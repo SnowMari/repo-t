@@ -64,6 +64,139 @@ void _tmain()
 			case EXIT:
 				return;
 				break;
+			case ADD_STUDENT: 
+			{
+				char MatHelp[5];
+				char alltest[5];
+				char SocialHelp[5];		
+				char kursovay[5];
+				char pract[5];
+				char statiy[5]; 
+				char SportAchiv[5];
+				int PracticeWork;
+				int CourseWork;
+				int firstEx, secondEx, thirdEx, FourEx;
+				StudentBaseDate* buffer = head; 
+
+				while (buffer->next != NULL)
+				{
+					buffer = buffer->next;
+				} 
+				StudentBaseDate* NewElement =
+				new StudentBaseDate; 
+				NewElement->id = buffer->id + 1;
+				buffer->next = NewElement;
+				NewElement->next = NULL;
+
+				std::cout << "Введите группу: ";
+				std::cin >> NewElement->group;
+				std::cout << "Введите фамилию: ";
+				std::cin >> NewElement->surname;
+				std::cout << "Введите имя: ";
+				std::cin >> NewElement->name;
+				std::cout 
+				<< "Введите номер зачётной книжки: ";
+				std::cin >> NewElement->CreditСard;
+				std::cout 
+				<< "Введите оценку за первый экзамен: ";
+				std::cin >> firstEx;
+				std::cout 
+				<< "Введите оценку за второй экзамен: ";
+				std::cin >> secondEx;
+				std::cout 
+				<< "Введите оценку за третий экзамен: ";
+				std::cin >> thirdEx;
+				std::cout 
+				<< "Введите оценку за четвёртый экзамен: ";
+				std::cin >> FourEx;
+				std::cout 
+				<< "Сдана ли курсовая " << std::endl;
+				std::cout << "(Да или Нет?) ";
+				std::cin >> kursovay;
+
+				if(kursovay[0] == 'Д' && kursovay[1] == 'а')
+				{
+					std::cout << "Оценка за курсовую: ";
+					std::cin >> CourseWork;
+				}
+				std::cout << "Сдана ли практика ";
+				std::cout << "(Да или Нет)? ";
+				std::cin >> pract;
+				if(pract[0] == 'Д' && pract[1] == 'а')
+				{
+					std::cout << "Оценка за практику: ";
+					std::cin >> PracticeWork;
+				}
+				std::cout << "Сданы ли все зачёты ";
+				std::cout << "(Да или Нет)? ";
+				std::cin >> alltest;
+				if(alltest[0] == 'Д' && alltest[1] == 'а'
+				   && pract[0] == 'Д' && pract[1] == 'а'
+				   && kursovay[0] == 'Д' && 
+				   kursovay[1] == 'а'&& firstEx > 3 &&
+				   secondEx > 3 && thirdEx > 3 && FourEx > 3
+				   && CourseWork > 3 && PracticeWork > 3 )
+				{
+					if((firstEx + secondEx + thirdEx + FourEx +
+					CourseWork + PracticeWork) == 30)
+					{
+
+
+					}
+
+					else if(24 < (firstEx + secondEx +
+						thirdEx + FourEx + CourseWork
+						+ PracticeWork) < 30)
+					{
+
+
+					}
+
+					else if((firstEx + secondEx + thirdEx
+					+ FourEx + CourseWork + PracticeWork) == 24)
+					{
+
+
+					}
+
+
+				}
+				else if((alltest[0] != 'Д' && alltest[1] != 'а')
+					   || (pract[0] != 'Д' && pract[1] != 'а')
+					   || (kursovay[0] != 'Д' 
+					   && kursovay[1] != 'а') || firstEx < 4 ||
+					   secondEx < 4 || thirdEx < 4 || FourEx < 4
+					   || CourseWork < 4 || PracticeWork < 4)
+				{
+					NewElement->SumStipend = 0 ;
+					NewElement->stipend = 0;
+					std::cout<<"Есть ли социальная стипендия ";
+					std::cout<< "(Да или Нет)?";
+					std::cin >> SocialHelp;
+					if(SocialHelp[0] == 'Д' &&
+					   SocialHelp[1] == 'а')
+					{
+						NewElement->stipend += 3150;
+						NewElement->stipend *=0.965;
+						NewElement->SumStipend +=
+						NewElement->stipend * 5;
+					}
+					std::cout << "Стипендия в месяц "
+					" по результатам сессии: ";
+					std::cout
+					<< NewElement->stipend << std::endl;
+					std::cout << "Стипендия за весь семестр"
+					" по результатам сессии: ";
+					std::cout
+					<< NewElement->SumStipend<< std::endl;
+				}
+
+
+
+			}	
+			break;
+
+
 			case PRINT_ALL_STUDENT:
 			{
 				StudentBaseDate* buffer = head->next;  
