@@ -308,6 +308,63 @@ void _tmain()
 			}	
 			break;
 
+			case PRINT_STUDENT:
+				{
+					int ID;
+					std::cout << "Введите id нужного студента:";
+					std::cin >> ID;
+					StudentBaseDate* buffer = head->next; 
+					while (buffer->next != NULL) 
+					{
+					   if(buffer->id == ID)\
+					   { 
+							std::cout << std::endl;
+							std::cout << "id - " << buffer->id 
+							<< std::endl;
+							std::cout << "Группа: " 
+							<< buffer->group 
+							<< std::endl;
+							std::cout 
+							<< "Фамилия и имя студента: "
+							<< buffer->surname 
+							<< ' '<<buffer->name << std::endl;
+							std::cout 
+							<< "Номер зачётной книжки: " 
+							<< buffer->CreditСard << std::endl;
+							std::cout << "Стипендия в месяц: "
+							<< buffer->stipend<<std::endl;
+							std::cout 
+							<< "Стипендия за семестр: "
+							<< buffer->SumStipend<<std::endl;
+							return;
+					   }
+					   buffer = buffer->next;
+					}
+					if (buffer->id == ID) 
+					{
+						std::cout << std::endl;
+						std::cout << "id - " << buffer->id 
+						<< std::endl;
+						std::cout << "Группа: " << buffer->group 
+						<< std::endl;
+						std::cout << "Фамилия и имя студента: "
+						<< buffer->surname 
+						<< ' '<<buffer->name << std::endl;
+						std::cout << "Номер зачётной книжки: " 
+						<< buffer->CreditСard << std::endl;
+						std::cout << "Стипендия в месяц: "
+						<< buffer->stipend<<std::endl;
+						std::cout << "Стипендия за семестр: "
+						<< buffer->SumStipend<<std::endl;
+					}
+					else
+					{
+						std::cout << std::endl 
+						<< "Не найден" << std::endl;
+					}
+				}
+				break;
+				
 			case PRINT_ALL_STUDENT:
 			{
 				StudentBaseDate* buffer = head->next;  
