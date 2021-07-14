@@ -140,8 +140,48 @@ void _tmain()
 					if((firstEx + secondEx + thirdEx + FourEx +
 					CourseWork + PracticeWork) == 30)
 					{
-
-
+						NewElement->SumStipend = 0;
+						NewElement->stipend = 5250;
+						std::cout
+						<<"Есть ли социальная стипендия ";
+						std::cout << "(Да или Нет)? ";
+						std::cin >> SocialHelp;
+						if(SocialHelp[0] == 'Д'
+						&& SocialHelp[1] == 'а')
+						{
+							NewElement->stipend += 9555;
+						} 
+						std::cout
+						<<"Наличие спортивных достижений ";
+						std::cout << "(Да или Нет): ";
+						std::cin >> SportAchiv;
+						if(SportAchiv[0] == 'Д'
+						&& SportAchiv[1] == 'а')
+						{
+							NewElement->stipend += 7000;
+						}
+						std::cout
+						<<"Наличие написанных статей ";
+						std::cout << "(Да или Нет): ";
+						std::cin >> statiy;
+						if(statiy[0] == 'Д'
+						&& statiy[1] == 'а')
+						{
+							NewElement->stipend += 7000;
+						}
+						NewElement->stipend *=0.965;
+						NewElement->SumStipend += 
+						NewElement->stipend * 5;
+						std::cout 
+						<< "Стипендия в месяц по "
+						<< "результатам сессии: ";
+						std::cout
+						<< NewElement->stipend << std::endl;
+						std::cout <<
+						"Стипендия за весь семестр "
+						"по результатам сессии: " ;
+						std::cout
+						<< NewElement->SumStipend<< std::endl;
 					}
 
 					else if(24 < (firstEx + secondEx +
