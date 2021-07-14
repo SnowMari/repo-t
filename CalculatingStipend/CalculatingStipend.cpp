@@ -21,9 +21,11 @@ struct StudentBaseDate
 	double SumStipend;
 	double MTotalCash;
 	double STotalCash;
-	// указатель на след элемент списка
     StudentBaseDate* next; 
 };
+
+void ReadFromFile(StudentBaseDate* head);
+void WriteIntoFile(StudentBaseDate* head);
 
 void _tmain()
 {
@@ -52,7 +54,7 @@ void _tmain()
 	StudentBaseDate* head = new StudentBaseDate; 
     head->next = NULL;
     head->id = 0;
-
+	ReadFromFile(head);
 
 	do
 	{
@@ -82,8 +84,7 @@ void _tmain()
 					std::cout << "Стипендия за семестр: "
 					<< buffer->SumStipend<<std::endl;
 
-					buffer = buffer->next; 
-					// меняем указатель для перебора элементов
+					buffer = buffer->next;
 				}
 				std::cout << std::endl;
 				std::cout << "id - " << buffer->id 
@@ -111,6 +112,60 @@ void _tmain()
 	system("pause");
 }
 
+void ReadFromFile(StudentBaseDate* head)
+{
+    StudentBaseDate* buffer;
+
+    std::ifstream file;
+    file.open("StudentBaseDate.txt"); 
+    if (file.is_open())
+    {
+        buffer = head;
+        while(!file.eof())
+        {
+			StudentBaseDate* NewElement = new StudentBaseDate; 
+            file >> NewElement->group;
+            file >> NewElement->surname;
+			file >> NewElement->name;
+			file >> NewElement->CreditCard;
+			file >> NewElement->stipend;
+			file >> NewElement->SumStipend;
+            NewElement->id = buffer->id + 1;
+			NewElement->next = NULL;
+            buffer->next = NewElement;
+            buffer = NewElement; 
+        }
+    }
+    else
+        return;
+    file.close();
+}
+
+void WriteIntoFile(StudentBaseDate* head)
+{
+	
+    std::ofstream file;
+    file.open("StudentBaseDate.txt"); 
+    if (file.is_open())
+    {
+		StudentBaseDate* buffer = head->next; 
+        while (buffer->next != NULL)
+        {
+			file << buffer->group << ' ' <<
+			buffer->surname << ' ' << buffer->name
+							<< ' ' << buffer->CreditCard 
+							<< ' ' << buffer->stipend << ' ' 
+							<< buffer->SumStipend << '\n';
+            buffer = buffer->next; 
+        }
+        file << buffer->group << ' ' << buffer->surname<<
+			' ' << buffer->name<< ' ' << buffer->CreditCard<<
+			' ' << buffer->stipend << ' ' << buffer->SumStipend;
+    }
+    else
+        return;
+    file.close();
+}
 
 int Menu()
 {
@@ -164,6 +219,3 @@ int Menu()
 	return NumberCmdMenu;
 	}
 }
-
-
-
