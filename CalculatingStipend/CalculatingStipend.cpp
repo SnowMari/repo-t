@@ -16,20 +16,21 @@ struct StudentBaseDate
 	char group[SIZECHAR];
 	char surname[SIZECHAR];
     char name[SIZECHAR];
-	char Credit�ard[SIZECHAR];
+	char CreditCard[SIZECHAR];
 	double stipend;
 	double SumStipend;
 	double MTotalCash;
 	double STotalCash;
-	// указатель на след элемент списка
     StudentBaseDate* next; 
 };
 
+void ReadFromFile(StudentBaseDate* head);
+void WriteIntoFile(StudentBaseDate* head);
+
 void _tmain()
 {
-    //SetConsoleCP(1251);
-    //SetConsoleOutputCP(1251);
-	setlocale(LC_ALL, "rus");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
 
 	int Menu();
 	int CmdMenu;
@@ -50,10 +51,121 @@ void _tmain()
 	<< std::endl;
 	std::cout<< "|===========================================|";
 
+	StudentBaseDate* head = new StudentBaseDate; 
+    head->next = NULL;
+    head->id = 0;
+	ReadFromFile(head);
 
+	do
+	{
+		CmdMenu = Menu();
+		switch (CmdMenu)
+		{
+			case EXIT:
+				return;
+				break;
+			case PRINT_ALL_STUDENT:
+			{
+				StudentBaseDate* buffer = head->next;  
+				while (buffer->next != NULL)
+				{
+					std::cout << std::endl;
+					std::cout << "id - " << buffer->id 
+					<< std::endl;
+					std::cout << "Группа: " << buffer->group 
+					<< std::endl;
+					std::cout << "Фамилия и имя студента: "
+					<< buffer->surname 
+					<< ' '<<buffer->name << std::endl;
+					std::cout << "Номер зачётной книжки: " 
+					<< buffer->CreditCard << std::endl;
+					std::cout << "Стипендия в месяц: "
+					<< buffer->stipend<<std::endl;
+					std::cout << "Стипендия за семестр: "
+					<< buffer->SumStipend<<std::endl;
+
+					buffer = buffer->next;
+				}
+				std::cout << std::endl;
+				std::cout << "id - " << buffer->id 
+				<< std::endl;
+				std::cout << "Группа: " << buffer->group 
+				<< std::endl;
+				std::cout << "Фамилия и имя студента: "
+				<< buffer->surname 
+				<< ' '<<buffer->name 
+				<< std::endl;
+				std::cout << "Номер зачётной книжки: " 
+				<< buffer->CreditCard 
+				<< std::endl;
+				std::cout << "Стипендия в месяц: "
+				<< buffer->stipend
+				<<std::endl;
+				std::cout << "Стипендия за семестр: "
+				<< buffer->SumStipend
+				<<std::endl;
+			}
+			break;
+
+		}
+	}while(true);
 	system("pause");
 }
 
+void ReadFromFile(StudentBaseDate* head)
+{
+    StudentBaseDate* buffer;
+
+    std::ifstream file;
+    file.open("StudentBaseDate.txt"); 
+    if (file.is_open())
+    {
+        buffer = head;
+        while(!file.eof())
+        {
+			StudentBaseDate* NewElement = new StudentBaseDate; 
+            file >> NewElement->group;
+            file >> NewElement->surname;
+			file >> NewElement->name;
+			file >> NewElement->CreditCard;
+			file >> NewElement->stipend;
+			file >> NewElement->SumStipend;
+            NewElement->id = buffer->id + 1;
+			NewElement->next = NULL;
+            buffer->next = NewElement;
+            buffer = NewElement; 
+        }
+    }
+    else
+        return;
+    file.close();
+}
+
+void WriteIntoFile(StudentBaseDate* head)
+{
+	
+    std::ofstream file;
+    file.open("StudentBaseDate.txt"); 
+    if (file.is_open())
+    {
+		StudentBaseDate* buffer = head->next; 
+        while (buffer->next != NULL)
+        {
+			file << buffer->group << ' ' <<
+			buffer->surname << ' ' << buffer->name
+							<< ' ' << buffer->CreditCard 
+							<< ' ' << buffer->stipend << ' ' 
+							<< buffer->SumStipend << '\n';
+            buffer = buffer->next; 
+        }
+        file << buffer->group << ' ' << buffer->surname<<
+			' ' << buffer->name<< ' ' << buffer->CreditCard<<
+			' ' << buffer->stipend << ' ' << buffer->SumStipend;
+    }
+    else
+        return;
+    file.close();
+}
 
 int Menu()
 {
@@ -107,6 +219,3 @@ int Menu()
 	return NumberCmdMenu;
 	}
 }
-
-
-
