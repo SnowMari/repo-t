@@ -137,14 +137,58 @@ void _tmain()
 				   secondEx > 3 && thirdEx > 3 && FourEx > 3
 				   && CourseWork > 3 && PracticeWork > 3 )
 				{
-					
+					if((firstEx + secondEx + thirdEx + FourEx +
+					CourseWork + PracticeWork) == 30)
+					{
 
 
+					}
+
+					else if(24 < (firstEx + secondEx +
+						thirdEx + FourEx + CourseWork
+						+ PracticeWork) < 30)
+					{
 
 
+					}
+
+					else if((firstEx + secondEx + thirdEx
+					+ FourEx + CourseWork + PracticeWork) == 24)
+					{
 
 
+					}
 
+
+				}
+				else if((alltest[0] != 'Д' && alltest[1] != 'а')
+					   || (pract[0] != 'Д' && pract[1] != 'а')
+					   || (kursovay[0] != 'Д' 
+					   && kursovay[1] != 'а') || firstEx < 4 ||
+					   secondEx < 4 || thirdEx < 4 || FourEx < 4
+					   || CourseWork < 4 || PracticeWork < 4)
+				{
+					NewElement->SumStipend = 0 ;
+					NewElement->stipend = 0;
+					std::cout<<"Есть ли социальная стипендия ";
+					std::cout<< "(Да или Нет)?";
+					std::cin >> SocialHelp;
+					if(SocialHelp[0] == 'Д' &&
+					   SocialHelp[1] == 'а')
+					{
+						NewElement->stipend += 3150;
+						NewElement->stipend *=0.965;
+						NewElement->SumStipend +=
+						NewElement->stipend * 5;
+					}
+					std::cout << "Стипендия в месяц "
+					" по результатам сессии: ";
+					std::cout
+					<< NewElement->stipend << std::endl;
+					std::cout << "Стипендия за весь семестр"
+					" по результатам сессии: ";
+					std::cout
+					<< NewElement->SumStipend<< std::endl;
 				}
 
 
