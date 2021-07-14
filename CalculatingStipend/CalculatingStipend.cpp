@@ -64,6 +64,95 @@ void _tmain()
 			case EXIT:
 				return;
 				break;
+			case ADD_STUDENT: 
+			{
+				char MatHelp[5];
+				char alltest[5];
+				char SocialHelp[5];		
+				char kursovay[5];
+				char pract[5];
+				char statiy[5]; 
+				char SportAchiv[5];
+				int PracticeWork;
+				int CourseWork;
+				int firstEx, secondEx, thirdEx, FourEx;
+				StudentBaseDate* buffer = head; 
+
+				while (buffer->next != NULL)
+				{
+					buffer = buffer->next;
+				} 
+				StudentBaseDate* NewElement =
+				new StudentBaseDate; 
+				NewElement->id = buffer->id + 1;
+				buffer->next = NewElement;
+				NewElement->next = NULL;
+
+				std::cout << "Введите группу: ";
+				std::cin >> NewElement->group;
+				std::cout << "Введите фамилию: ";
+				std::cin >> NewElement->surname;
+				std::cout << "Введите имя: ";
+				std::cin >> NewElement->name;
+				std::cout 
+				<< "Введите номер зачётной книжки: ";
+				std::cin >> NewElement->CreditСard;
+				std::cout 
+				<< "Введите оценку за первый экзамен: ";
+				std::cin >> firstEx;
+				std::cout 
+				<< "Введите оценку за второй экзамен: ";
+				std::cin >> secondEx;
+				std::cout 
+				<< "Введите оценку за третий экзамен: ";
+				std::cin >> thirdEx;
+				std::cout 
+				<< "Введите оценку за четвёртый экзамен: ";
+				std::cin >> FourEx;
+				std::cout 
+				<< "Сдана ли курсовая " << std::endl;
+				std::cout << "(Да или Нет?) ";
+				std::cin >> kursovay;
+
+				if(kursovay[0] == 'Д' && kursovay[1] == 'а')
+				{
+					std::cout << "Оценка за курсовую: ";
+					std::cin >> CourseWork;
+				}
+				std::cout << "Сдана ли практика ";
+				std::cout << "(Да или Нет)? ";
+				std::cin >> pract;
+				if(pract[0] == 'Д' && pract[1] == 'а')
+				{
+					std::cout << "Оценка за практику: ";
+					std::cin >> PracticeWork;
+				}
+				std::cout << "Сданы ли все зачёты ";
+				std::cout << "(Да или Нет)? ";
+				std::cin >> alltest;
+				if(alltest[0] == 'Д' && alltest[1] == 'а'
+				   && pract[0] == 'Д' && pract[1] == 'а'
+				   && kursovay[0] == 'Д' && 
+				   kursovay[1] == 'а'&& firstEx > 3 &&
+				   secondEx > 3 && thirdEx > 3 && FourEx > 3
+				   && CourseWork > 3 && PracticeWork > 3 )
+				{
+					
+
+
+
+
+
+
+
+				}
+
+
+
+			}	
+			break;
+
+
 			case PRINT_ALL_STUDENT:
 			{
 				StudentBaseDate* buffer = head->next;  
