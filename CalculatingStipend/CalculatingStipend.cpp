@@ -275,8 +275,6 @@ void _tmain()
 						std::cout
 						<< NewElement->SumStipend<< std::endl;
 					}
-
-
 				}
 				else if((alltest[0] != 'Д' && alltest[1] != 'а')
 					   || (pract[0] != 'Д' && pract[1] != 'а')
@@ -307,9 +305,6 @@ void _tmain()
 					std::cout
 					<< NewElement->SumStipend<< std::endl;
 				}
-
-
-
 			}	
 			break;
 
@@ -355,7 +350,16 @@ void _tmain()
 				<<std::endl;
 			}
 			break;
-
+			case WRITE_INTO_FILE:
+			{
+				WriteIntoFile(head);
+			}	
+			break;
+			case CLEAR_FILE:
+			{
+				 ClearFile();
+			}
+			break;
 		}
 	}while(true);
 	system("pause");
