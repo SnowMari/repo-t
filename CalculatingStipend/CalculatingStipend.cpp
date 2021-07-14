@@ -24,6 +24,7 @@ struct StudentBaseDate
     StudentBaseDate* next; 
 };
 
+void ClearFile();
 void ReadFromFile(StudentBaseDate* head);
 void WriteIntoFile(StudentBaseDate* head);
 
@@ -312,7 +313,6 @@ void _tmain()
 			}	
 			break;
 
-
 			case PRINT_ALL_STUDENT:
 			{
 				StudentBaseDate* buffer = head->next;  
@@ -359,6 +359,23 @@ void _tmain()
 		}
 	}while(true);
 	system("pause");
+}
+
+void ClearFile()
+{
+		std::ofstream file;
+		file.open("StudentBaseDate.txt", std::ios::trunc); // открыли файл 
+		if (file.is_open()) // проверили открытие
+		{  
+			std::cout <<"Успешно очищен текстовый файл"<<std::endl;
+		}
+		else
+		{
+          	std::cout<<"Текстовый файл не открыт!!!";
+			system("pause");
+			return;
+		}
+		file.close();
 }
 
 void ReadFromFile(StudentBaseDate* head)
